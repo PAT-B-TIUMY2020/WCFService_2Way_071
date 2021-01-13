@@ -7,15 +7,16 @@ using System.Text;
 
 namespace WCFService_2Way_071
 {
+    
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
-    [ServiceContract]
-    public interface IService1
+    [ServiceContract(CallbackContract = typeof(IClientCallback))]
+    public interface IServiceCallback
     {
-        [OperationContract]
-        string GetData(int value);
+        [OperationContract(IsOneWay = true)]
+        void gabung(string username);
 
-        [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        [OperationContract(IsOneWay = true)]
+        void kirimPesan(string pesan);
 
         // TODO: Add your service operations here
     }
